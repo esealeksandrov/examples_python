@@ -26,22 +26,23 @@ class Singleton(object):
     def init(self):
         self.index = 1
 
-    @classmethod
+
     def check_tlm(self):
         return (int(timestamp(now())) - self.update_time >= self.tlm)
 
-    @classmethod
     def need_update(self):
-        def updater(self):
-            if self.chech_tlm:
-                self.index += 1
-        return updater()
-    @need_update
+        if self.check_tlm():
+            self.update()
+
+
+
     def get_index(self):
         return self.index
+
+
 i1 = Singleton()
 i2 = Singleton()
-print(i1, i2)
+print(i1.index, i2.index)
 
 sleep(6)
 i3 = Singleton()
